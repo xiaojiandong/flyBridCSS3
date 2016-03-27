@@ -16,7 +16,7 @@ animate属性，动态弹窗
 	</body>
 ```
 
-## Less代码局部：
+## Less局部代码：
 ```less
 .hide-mask-wrap{
   -webkit-animation: hideMaskAnimate 0.3s 0.1s backwards;
@@ -35,5 +35,36 @@ animate属性，动态弹窗
     -webkit-opacity : 0;
   }
 }
+```
+
+## JS代码：
+```js
+$(function(){
+    var playBtnObj =  $('.js_play_btn');
+    var maskObj =  $('.js_mask_wrap');
+    var isShowMask = true;
+    playBtnObj.on('click' , function(){
+        isShowMask = !isShowMask;
+        if(isShowMask){
+            hideMask();
+        }else{
+            showMask();
+        }
+    });
+
+    function hideMask(){
+        maskObj.addClass('hide-mask-wrap');
+        playBtnObj.text('点击有惊喜');
+        setTimeout(function(){
+            maskObj.removeClass('hide-mask-wrap');
+            maskObj.hide();
+        } , 300);
+    };
+
+    function showMask(){
+        maskObj.show();
+        playBtnObj.text('再玩一次');
+    }
+});
 ```
 
